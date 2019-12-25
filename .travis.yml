@@ -9,4 +9,4 @@ before_install:
   - docker pull zepan/licheepi
 
 script:
-  - docker run zepan/licheepi hostname
+  - sh build_all.sh

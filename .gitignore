@@ -1,0 +1,7 @@
+
+docker-share/zImage/linux
+docker-share/boot/boot.scr
+docker-share/rootfs/buildroot*
+
+*.log
+*.old
