@@ -9,4 +9,6 @@ before_install:
   - docker pull zepan/licheepi
 
 script:
-  - sh build_all.sh
+  - travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
+  - travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
+  - travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh
