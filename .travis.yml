@@ -23,10 +23,10 @@ jobs:
   include:
     - stage: boot
       script: hostname
-    - stage: zImage
-      script: hostname
-    - stage: rootfs
-      script: hostname
+    # - stage: zImage
+    #   script: hostname
+    # - stage: rootfs
+    #   script: hostname
 
 
 env:
