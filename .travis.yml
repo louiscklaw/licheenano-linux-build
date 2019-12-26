@@ -23,14 +23,15 @@ jobs:
     - script: travis_wait 60 docker run --rm -t -v $TRAVIS_BUILD_DIR/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
     - script: travis_wait 120 docker run --rm -t -v $TRAVIS_BUILD_DIR/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh
 
-after_success:
-  - id
-  - sudo apt-get update
-  - sudo apt-get install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
-  - pip3 install --user pipenv
-  - cd $TRAVIS_BUILD_DIR/_util
-  - pipenv sync
-  - pipenv run python3 ./merge.py
+    - stage: merge
+      script:
+        - id
+        - sudo apt-get update
+        - sudo apt-get install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+        - pip3 install --user pipenv
+        - cd $TRAVIS_BUILD_DIR/_util
+        - pipenv sync
+        - pipenv run python3 ./merge.py
 
 notifications:
   slack:
