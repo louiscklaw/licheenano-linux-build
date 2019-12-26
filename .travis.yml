@@ -24,9 +24,9 @@ jobs:
     - stage: boot
       script: hostname
     # - stage: zImage
-    #   script: hostname
+    #   script: travis_wait 60 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
     # - stage: rootfs
-    #   script: hostname
+    #   script: travis_wait 120 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh
 
 
 env:
