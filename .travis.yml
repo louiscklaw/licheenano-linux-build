@@ -13,8 +13,24 @@ env:
     # SLACK_TOKEN
     - secure: mIMJSmDxvN2HHsoA4dhDhce7nz/UFQgZDqdKA348HWNXiwIdjDy3Tt1hsfSOUeXAz/SZBNZGUQuu0YsUNulCkub4C4boO9Ecrrb+ptodqKyNursiGDb+tAAVaUt/y3GMDMBthtJF53PPkKvqdtXwliYo9d2MW8y6WHnDRiQmdxcXS23+ngFdqDux3TTTplWxax6Sor+lKeetmD/Qf6557ty7/UjYv+z4z3LRwrJrWNKyJYfZA0oz9O59PgoHr64nTt/AZbWGMQvoWoAg16ONcZ7UEoxWb6RmF7V331rKyAPVhrrpS8dqAWgl1t30vOFM6bh/a4jZV4p5bVkV1uBiMEAYr2twkqi+w8uTCYsLlCpK1SjKVLKHzUdap9rGgtFRnrGVLv4x58lGoSJroDLbFULAUE5XEsggqxLH2SNeKOc3QZjBnvCOydZu7R8WynjY2FTmE+otUGqZ+MB9G1doTATxCMbstFlEo3b7tkhhLaDFf7WUQd9ol+F3x2fa22mdh2zfjNzD4rHTjEISbV3xhhLblo3lFE9UppT+fYWwms2srkBDHb34+u3WEz8rZwUUOTlJS2bTuSLxlKztbDf7cMkoSoYe9+e+iLzazAHFsrCzr8057tkv8V8nNQceQJxSdkC1RVBClY0ik+34m/P2zSuK2sGPrggO+8PhTGORxA8=
 
+
+before_script:
+  - docker pull logickee/licheepi:latest || true
+  - docker pull zepan/licheepi:latest || true
+
+
+# before_install:
+#   - docker pull zepan/licheepi
+
+cache:
+  directories:
+  - docker_images
+
 before_install:
-  - docker pull zepan/licheepi
+- docker load -i docker_images/images.tar || true
+
+before_cache:
+- docker save -o docker_images/images.tar $(docker images -a -q)
 
 jobs:
   include:
