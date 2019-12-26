@@ -9,6 +9,7 @@ docker run  --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-
 
 # build zImage
 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
+# docker run --rm -it -v $PWD/docker-share:/docker-share zepan/licheepi /bin/bash
 
 # build rootfs
 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh

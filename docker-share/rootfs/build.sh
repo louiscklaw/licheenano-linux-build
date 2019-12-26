@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+echo 'building rootfs'
+
 cd docker-share/rootfs
 
 rm -rf buildroot-*
@@ -14,3 +16,5 @@ make -j2
 cd ..
 
 cd ../..
+
+echo 'build rootfs done.'
