@@ -11,7 +11,8 @@ env:
     - CROSS_COMPILE=arm-linux-gnueabi-
 
 before_install:
-  - docker pull zepan/licheepi
+  - hostname
+  # - docker pull zepan/licheepi
 
 # script:
 #   # - travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
