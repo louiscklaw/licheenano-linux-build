@@ -20,8 +20,9 @@ before_install:
 
 jobs:
   include:
-    - stage: test
+    - stage: boot
       script: travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
-      script: ./test 2
-    - stage: deploy
-      script: ./deploy
+    - stage: zImage
+      script: travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
+    - stage: rootfs
+      script: travis_wait 30 docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
