@@ -12,7 +12,7 @@ tar xvf buildroot-2017.08.tar.gz
 cp .config buildroot-2017.08/.config
 
 cd buildroot-2017.08/
-make -j2
+make -j6
 cd ..
 
 cd ../..
