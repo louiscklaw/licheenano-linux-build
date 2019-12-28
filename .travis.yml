@@ -5,14 +5,6 @@ dist: bionic
 services:
   - docker
 
-env:
-  global:
-    # GITHUB_TOKEN
-    - secure: hqw3v4sCLVjEOFAMKWdtDrN5yVHsBdh8Ajtw7pJRE1bPJUA4rXfg2fs+f/hqqyQGUybtXvz6g7IgQPJpIrov9cHcd47qS27sfpvGAnbnbkkBGk+2lvBlvjnukipOaS7QZNQ2oyG96z1hLvmw/xLAaAWKstRDWxM1M8WkHJ7NHOqSj6OzIdzNb9KuBmCLoz8GDm05Temm4+kWADS/AElZN1aQPQIvEPl4Bnd54zlTqjBzKbGKSpsR7Ey7+lPteZ3IQ+mO1FnK2mYKwJ20EXz46xreoLCvy491xB1L5BADlDNICuyVLWND+Wbm41tMYpJtqNP8OIZ8/RNPW794RFIxnSJDehgbCqLmjSZrORoSBuu/UQ4XzIHf9/omV1qfj/3qV0ueXHJsQPHf84H+H3fhjXi88k4ac2OVtC9wvHeayZxGcuOqcF8M/13O2Fo84lXyFVbMxaplzwlLjv83atEG3BWIq4L3/veDn4Nx7GNtTjyEQsONI0DrBbPfANBjLQHJvFjmNmGg4PAt03Zq9W5zutaHLD+UNnHKaOexzsXoW6SvMOmNeC69qzgUgv4rIv5niivX6M1yU+hHZSuFaT1qqt7QJCp9uCQ/VNvng4KSNwfYtz+RNJpjAYf0R6UMT7Vhwoe+bMxhu2/S6jeOBYuwf2oKzmFe8bqRopLUrdB22lk=
-
-    # SLACK_TOKEN
-    - secure: mIMJSmDxvN2HHsoA4dhDhce7nz/UFQgZDqdKA348HWNXiwIdjDy3Tt1hsfSOUeXAz/SZBNZGUQuu0YsUNulCkub4C4boO9Ecrrb+ptodqKyNursiGDb+tAAVaUt/y3GMDMBthtJF53PPkKvqdtXwliYo9d2MW8y6WHnDRiQmdxcXS23+ngFdqDux3TTTplWxax6Sor+lKeetmD/Qf6557ty7/UjYv+z4z3LRwrJrWNKyJYfZA0oz9O59PgoHr64nTt/AZbWGMQvoWoAg16ONcZ7UEoxWb6RmF7V331rKyAPVhrrpS8dqAWgl1t30vOFM6bh/a4jZV4p5bVkV1uBiMEAYr2twkqi+w8uTCYsLlCpK1SjKVLKHzUdap9rGgtFRnrGVLv4x58lGoSJroDLbFULAUE5XEsggqxLH2SNeKOc3QZjBnvCOydZu7R8WynjY2FTmE+otUGqZ+MB9G1doTATxCMbstFlEo3b7tkhhLaDFf7WUQd9ol+F3x2fa22mdh2zfjNzD4rHTjEISbV3xhhLblo3lFE9UppT+fYWwms2srkBDHb34+u3WEz8rZwUUOTlJS2bTuSLxlKztbDf7cMkoSoYe9+e+iLzazAHFsrCzr8057tkv8V8nNQceQJxSdkC1RVBClY0ik+34m/P2zSuK2sGPrggO+8PhTGORxA8=
-
 
 # before_script:
 #   - docker pull logickee/licheepi:latest || true
@@ -37,9 +29,9 @@ jobs:
         - travis_wait 20 docker run --rm -t -v $TRAVIS_BUILD_DIR/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
         # - travis_wait 120 docker run --rm -t -v $TRAVIS_BUILD_DIR/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh
 
-cache:
-  directories:
-  - docker_images
+# cache:
+#   directories:
+#   - docker_images
 
 after_success:
   - id
@@ -53,3 +45,12 @@ after_success:
 notifications:
   slack:
     secure: TGCTft3x3lyH+BWuWCDUajFiUtKWi8QYo2FmTV71mZfMYuOkQ9y/Ps9G6gJduCuAuuBXUV7WRgXbbumMJPFeGo2iay7j/oi+o6aUwq80+bj6zoZjqjl0JTInaPg6WYRlARL3VdbFCM7n6gVQ76DV/3rQEUtaqcb4Dow9giyh51otd0OrA8nUvNb6lx7geeIotZgNsMtmLym5dyb63c+LbpnDKdEzQqYlQqQ1cMft1jISkyUYDhpG51fj+BoAM54rHjmFRb5x20+vQmt2dE1aJJNf/M2lAu5eDW3F0qsh1qwBG75IUaoLCHYuvMyAnUTT1ZT+CK5LWytPeHN8hTfcGGZYCXyXrvC8u8W7+b6Ox3CA/LFa/XtCIdQD+9vmN+bJc5xoAdE6Pixml+KRKguWVHl5Pmr8mAv53cuH957TPIzy9Pb6HQagUSBST75iMKPJdOtyLS99tUPcXvaPY6w1jZJ17oL+iDLvAf9QB/DUI56a115cgpH+piOIr/RvATdkMcAAP/UpI3ngHGOyEbUn4wGpV+228n/XDwVp931eWhPMV2YPu1KsiFvZPlkhp0hBfO3RDeLKw6+WXASIk9LXbGXJWNloi4i4Fg6Jkz0I9G0Q0iuvCdy06Xju0qEXA9VQLPXgvSSwaL08NwL29YlgmJJtAUwgmBG5SXyi/DWz1Y4=
+
+
+env:
+  global:
+    # GITHUB_TOKEN
+    - secure: hqw3v4sCLVjEOFAMKWdtDrN5yVHsBdh8Ajtw7pJRE1bPJUA4rXfg2fs+f/hqqyQGUybtXvz6g7IgQPJpIrov9cHcd47qS27sfpvGAnbnbkkBGk+2lvBlvjnukipOaS7QZNQ2oyG96z1hLvmw/xLAaAWKstRDWxM1M8WkHJ7NHOqSj6OzIdzNb9KuBmCLoz8GDm05Temm4+kWADS/AElZN1aQPQIvEPl4Bnd54zlTqjBzKbGKSpsR7Ey7+lPteZ3IQ+mO1FnK2mYKwJ20EXz46xreoLCvy491xB1L5BADlDNICuyVLWND+Wbm41tMYpJtqNP8OIZ8/RNPW794RFIxnSJDehgbCqLmjSZrORoSBuu/UQ4XzIHf9/omV1qfj/3qV0ueXHJsQPHf84H+H3fhjXi88k4ac2OVtC9wvHeayZxGcuOqcF8M/13O2Fo84lXyFVbMxaplzwlLjv83atEG3BWIq4L3/veDn4Nx7GNtTjyEQsONI0DrBbPfANBjLQHJvFjmNmGg4PAt03Zq9W5zutaHLD+UNnHKaOexzsXoW6SvMOmNeC69qzgUgv4rIv5niivX6M1yU+hHZSuFaT1qqt7QJCp9uCQ/VNvng4KSNwfYtz+RNJpjAYf0R6UMT7Vhwoe+bMxhu2/S6jeOBYuwf2oKzmFe8bqRopLUrdB22lk=
+
+    # SLACK_TOKEN
+    - secure: mIMJSmDxvN2HHsoA4dhDhce7nz/UFQgZDqdKA348HWNXiwIdjDy3Tt1hsfSOUeXAz/SZBNZGUQuu0YsUNulCkub4C4boO9Ecrrb+ptodqKyNursiGDb+tAAVaUt/y3GMDMBthtJF53PPkKvqdtXwliYo9d2MW8y6WHnDRiQmdxcXS23+ngFdqDux3TTTplWxax6Sor+lKeetmD/Qf6557ty7/UjYv+z4z3LRwrJrWNKyJYfZA0oz9O59PgoHr64nTt/AZbWGMQvoWoAg16ONcZ7UEoxWb6RmF7V331rKyAPVhrrpS8dqAWgl1t30vOFM6bh/a4jZV4p5bVkV1uBiMEAYr2twkqi+w8uTCYsLlCpK1SjKVLKHzUdap9rGgtFRnrGVLv4x58lGoSJroDLbFULAUE5XEsggqxLH2SNeKOc3QZjBnvCOydZu7R8WynjY2FTmE+otUGqZ+MB9G1doTATxCMbstFlEo3b7tkhhLaDFf7WUQd9ol+F3x2fa22mdh2zfjNzD4rHTjEISbV3xhhLblo3lFE9UppT+fYWwms2srkBDHb34+u3WEz8rZwUUOTlJS2bTuSLxlKztbDf7cMkoSoYe9+e+iLzazAHFsrCzr8057tkv8V8nNQceQJxSdkC1RVBClY0ik+34m/P2zSuK2sGPrggO+8PhTGORxA8=
