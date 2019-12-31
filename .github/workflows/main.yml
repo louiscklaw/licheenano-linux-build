@@ -13,10 +13,10 @@ jobs:
     - name: build boot.scr
       run: docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
 
-    - name: buidl zImage
+    - name: build zImage
       run: docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
 
-    - name: buidl rootfs
+    - name: build rootfs
       run: docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh
 
     - name: Send message to Slack API
