@@ -18,4 +18,6 @@ jobs:
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
         slack-channel: build_result
-        slack-text: build licheenano-linux-build done
+        slack-text: |
+          ${{ github.repository }} build done
+          https://github.com/${{ github.repository }}/commit/${{ github.sha }}/checks
