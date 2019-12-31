@@ -4,7 +4,8 @@
 echo 'building zImage...'
 
 apt-get update
-apt-get install -y libssl-dev
+apt-get install -y libssl-dev gcc-arm*
+
 
 cd docker-share/zImage
 
