@@ -1,0 +1,30 @@
+name: merge
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker version check
+      run: docker --version
+
+    - name: build boot.scr
+      run: docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/boot/build.sh
+
+    - name: buidl zImage
+      run: docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/zImage/build.sh
+
+    - name: buidl rootfs
+      run: docker run --rm -t -v $PWD/docker-share:/docker-share zepan/licheepi sh docker-share/rootfs/build.sh
+
+    - name: Send message to Slack API
+      uses: archive/github-actions-slack@master
+      with:
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+        slack-channel: build_result
+        slack-text: Hello! Event "${{ github.event_name }}" in "${{ github.repository }}" 🤓
+
+    - name: Result from "Send Message"
+      run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
